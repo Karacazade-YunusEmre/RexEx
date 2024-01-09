@@ -1,0 +1,57 @@
+
+Notlar:
+	- Regex ifadeler iki // arasında yazılır. 
+	- Flag'ler sondaki / den sonra gelir.
+	- Regex'e ait ifadeler (. gibi)  seçtirilecek ise bu ifadelerin başına backslash(\) konulur.
+
+Flags:
+	-g global flag'dir. Aranan karakterin ilk bulunan yerde değilde geçtiği tüm yerleri gösterir.
+	-i case insensitive. Bu flag büyük küçük harf farkını aradan kaldırır. Ancak bazı durumlar için yanlış sonuçlar
+		verebildiği için kullanımı pek tavsiye edilmez.
+	-m multiline flag. Bu flag aktif ise tüm satır başları ifadeleri seçilir. Aktif değilse sadece ilk satırın
+		ilk karakteri seçilebilir.
+
+Notasyonlar:
+	- + notasyonu: Bu ifade ile aranan karakterlerden birden fazlası yanyana geçiyorsa bunları topluca seçmeyi sağlar.
+	- ? notasyonu: Bu ifade önündeki karakterin opsiyonel olmasını sağlar. Bu ifadenin önündeki karakterin veya karakter gurubunun
+					geçtiği veya geçmediği ifadeler seçime dahil edilir.
+	- * notasyonu: Bu ifade önündeki karakteri hem opsiyonel olmasını hemde toplu seçilmesini sağlar. 
+					Bu ifadenin önündeki karakter cümlede birden fazla geçerse hepsi seçilir ve karakter opsiyoneldir.
+	- . notasyonu: Bu ifade önüne gelen karakteri ifade eder. Yani bu notasyon tek bir karakter seçer. (Bu notasyon satır başı karakterini önemsemez)
+	- \w notasyonu: Bu notasyon alfanumeric ve underscore ifadeleri seçmeyi sağlar.
+	- \W notasyonu: Bu notasyon alfanumeric ve underscore olmayan tüm ifadeleri seçer.
+	- \s notasyonu: Bu notasyon tüm space'leri seçer.
+	- \S notasyonu: Bu notasyon space harif tüm karakterleri seçer.
+	- \d notasyonu: Bu notasyon tüm numeric yani digit ifadeleri seçer.
+	- \D notasyonu: Bu ifade numeric olmayan tüm ifadeleri seçer. Space ve underscore karakterkeri dahil.
+	- {} notasyonu: Bu notasyon aralık belirlemeyi sağlar.
+		{2} ifadeyi ikili guruplar
+		{2,3} ifadeyi en az 2'li olacak şekilde 3'lü guruplar
+		{3,} ifadeyi en az 3'lü olacak şekilde sonsuz guruplar.
+	- [] notasyonu: Bu notasyon aralık belirlemeyi sağlar.
+		ör: [a-z] küçük harflerin hepsini seçer
+			[a-zA-Z] küçük harfler ile beraber büyük harflerinde hepsini seçer
+			[a-zA-Z0-9] küçük harfler, büyük harfler ve rakamların hepsini seçer.
+	- () notasyonu: Bu notasyon karakter gruplamayı sağlar.
+		ör: (a|e) notasyonu ifade içerisinde geçen a VEYA e karakterlerini seçer ve guruplar.
+	- ^ notasyonu: Bu notasyon satır başı karakterini ifade eder. 
+		ör: ^A ifadesi satır başı 'A' ise bu karakteri seçer.
+	- $ notasyonu: Bu notasyon satır sonu karakterini ifade eder.
+		ör: k$ ifadesi satır sonu 'k' ile bitmiş ise bu ifadeyi seçer.
+		ör: [kK]$ ifadesi satır sonu 'k' veya 'K' ile bitmiş ise bu ifadeyi seçer ama guruplamaz.
+	- look behind ve look ahead notasyonları: 
+		look behind seçilecek ifadenin solundaki ifadeleri belirterek ifade seçmeyi sağlar.
+		look ahead seçilecek ifadenin sağındaki ifadeleri belirterek ifade seçmeyi sağlar.
+		
+		(başında)X(sonunda)
+		(lookbehind)X(lookahead)
+		
+		pozitif lookahead => .(?=*)
+		negatif lookahead => .(?!*)
+		pozitif lookbehind => (?<=*).
+		negatif lookahead => (?<!*).
+		
+		pozitif look ahead .(?=t) sağında 't' karakteri olan karakteri seçer.
+		negatif look ahead .(?!t) sağında 't' karakteri olmayan karakteri seçer.
+		pozitif look behind (?<=t). solunda 't' karakteri olan karakteri seçer.
+		negatif look behind (?<!t). sağında 't' karakteri olmayan karakteri seçer.
